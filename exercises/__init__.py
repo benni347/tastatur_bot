@@ -5,10 +5,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
+import random as rnd
+
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
-import random as rnd
 
 import json
 
@@ -17,9 +18,11 @@ cfg = json.load(open('tastatur_bot.json'))
 username = cfg['username']
 password = cfg['password']
 
-def prepare(driver):
+def prepare():
     
+    driver = webdriver.Firefox()
     driver.get('https://tastaturschreiben.verlagskv.ch/#/login')
+    driver.implicitly_wait(10) # seconds
 
     username_tx = driver.find_element_by_id("username")
     password_tx = driver.find_element_by_id("password")
@@ -33,10 +36,11 @@ def prepare(driver):
     login_btn = driver.find_elements_by_class_name("login-button")
     login_btn[0].click()
 
+    return driver
+
 def four3():
     
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     # driver.implicitly_wait(10) # seconds
@@ -70,7 +74,6 @@ def four3():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-3/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -95,8 +98,7 @@ def four3():
 
 def four4():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -155,8 +157,7 @@ def four4():
 
 def four5():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -215,8 +216,7 @@ def four5():
 
 def four6():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -275,8 +275,7 @@ def four6():
 
 def four7():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -333,38 +332,39 @@ def four7():
             time.sleep(.35 + (rnd.random() * 0.25))
         line.send_keys(Keys.ENTER)
 
-window = Tk()
+def drawWindow():
+    window = Tk()
 
-window.title("Übungen")
-window.geometry('650x500')
+    window.title("Übungen")
+    window.geometry('650x500')
 
-tab_parent = ttk.Notebook(window)
+    tab_parent = ttk.Notebook(window)
 
-tab1 = ttk.Frame(tab_parent)
-tab2 = ttk.Frame(tab_parent)
+    tab1 = ttk.Frame(tab_parent)
+    tab2 = ttk.Frame(tab_parent)
 
-tab_parent.add(tab1, text="4")
-tab_parent.add(tab2, text="5")
+    tab_parent.add(tab1, text="4")
+    tab_parent.add(tab2, text="5")
 
-# === WIDGETS FOR TAB ONE
-btnFour3 = tk.Button(tab1, text="4,3", command=four3)
-btnFour4 = tk.Button(tab1, text="4-4", command=four4)
-btnFour5 = tk.Button(tab1, text="4-5", command=four5)
-btnFour6 = tk.Button(tab1, text="4-6", command=four6)
-btnFour7 = tk.Button(tab1, text="4-7", command=four7)
+    # === WIDGETS FOR TAB ONE
+    btnFour3 = tk.Button(tab1, text="4-3", command=four3)
+    btnFour4 = tk.Button(tab1, text="4-4", command=four4)
+    btnFour5 = tk.Button(tab1, text="4-5", command=four5)
+    btnFour6 = tk.Button(tab1, text="4-6", command=four6)
+    btnFour7 = tk.Button(tab1, text="4-7", command=four7)
 
-imgLabelTabOne = tk.Label(tab1)
+    imgLabelTabOne = tk.Label(tab1)
 
-buttonForward = tk.Button(tab1, text="Forward")
-buttonBack = tk.Button(tab1, text="Back")
+    buttonForward = tk.Button(tab1, text="Forward")
+    buttonBack = tk.Button(tab1, text="Back")
 
-# === ADD WIDGETS TO GRID ON TAB ONE
-btnFour3.grid(row=0, column=0, padx=15, pady=15)
-btnFour4.grid(row=1, column=0, padx=15, pady=15)
-btnFour5.grid(row=2, column=0, padx=15, pady=15)
-btnFour6.grid(row=3, column=0, padx=15, pady=15)
-btnFour7.grid(row=4, column=0, padx=15, pady=15)
+    # === ADD WIDGETS TO GRID ON TAB ONE
+    btnFour3.grid(row=0, column=0, padx=15, pady=15)
+    btnFour4.grid(row=1, column=0, padx=15, pady=15)
+    btnFour5.grid(row=2, column=0, padx=15, pady=15)
+    btnFour6.grid(row=3, column=0, padx=15, pady=15)
+    btnFour7.grid(row=4, column=0, padx=15, pady=15)
 
-tab_parent.pack(expand=1, fill='both')
+    tab_parent.pack(expand=1, fill='both')
 
-window.mainloop()
+    window.mainloop()
