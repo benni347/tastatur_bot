@@ -17,8 +17,9 @@ cfg = json.load(open('tastatur_bot.json'))
 username = cfg['username']
 password = cfg['password']
 
-def prepare(driver):
+def prepare():
     
+    driver = webdriver.Firefox()
     driver.get('https://tastaturschreiben.verlagskv.ch/#/login')
 
     username_tx = driver.find_element_by_id("username")
@@ -33,10 +34,11 @@ def prepare(driver):
     login_btn = driver.find_elements_by_class_name("login-button")
     login_btn[0].click()
 
+    return driver
+
 def four3():
     
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     # driver.implicitly_wait(10) # seconds
@@ -95,8 +97,7 @@ def four3():
 
 def four4():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -155,8 +156,7 @@ def four4():
 
 def four5():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -215,8 +215,7 @@ def four5():
 
 def four6():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
@@ -275,8 +274,7 @@ def four6():
 
 def four7():
 
-    driver = webdriver.Firefox()
-    prepare(driver)
+    driver = prepare()
     # wait = WebDriverWait(driver, 10)
 
     driver.implicitly_wait(4) # seconds
