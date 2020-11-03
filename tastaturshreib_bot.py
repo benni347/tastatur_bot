@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
+import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 import random as rnd
@@ -59,7 +60,7 @@ def four3():
     action.click()
     action.perform()
 
-    Starte Übung
+    # Starte Übung
     repeatLines_value_3.send_keys(Keys.SPACE)
 
     delay = 3 # seconds
@@ -272,25 +273,98 @@ def four6():
             time.sleep(.35 + (rnd.random() * 0.25))
         line.send_keys(Keys.ENTER)
 
+def four7():
+
+    driver = webdriver.Firefox()
+    prepare(driver)
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-7')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-7/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
 window = Tk()
 
-window.title("Übungs auswähler")
+window.title("Übungen")
 window.geometry('650x500')
 
-lbl = Label(window, text="Übungen", font=("Arial Bold", 20))
-lbl.grid(column=0, row=0)
+tab_parent = ttk.Notebook(window)
 
+tab1 = ttk.Frame(tab_parent)
+tab2 = ttk.Frame(tab_parent)
 
-btnFour3 = Button(window, text="4-3", command=four3)
-btnFour3.grid(column=2, row=1)
+tab_parent.add(tab1, text="4")
+tab_parent.add(tab2, text="5")
 
-btnFour4 = Button(window, text="4-4", command=four4)
-btnFour4.grid(column=2, row=3)
+# === WIDGETS FOR TAB ONE
+btnFour3 = tk.Button(tab1, text="4,3", command=four3)
+btnFour4 = tk.Button(tab1, text="4-4", command=four4)
+btnFour5 = tk.Button(tab1, text="4-5", command=four5)
+btnFour6 = tk.Button(tab1, text="4-6", command=four6)
+btnFour7 = tk.Button(tab1, text="4-7", command=four7)
 
-btnFour5 = Button(window, text="4-6", command=four5)
-btnFour5.grid(column=2, row=3)
+imgLabelTabOne = tk.Label(tab1)
 
-btnFour6 = Button(window, text="4-6", command=four6)
-btnFour6.grid(column=2, row=3)
+buttonForward = tk.Button(tab1, text="Forward")
+buttonBack = tk.Button(tab1, text="Back")
+
+# === ADD WIDGETS TO GRID ON TAB ONE
+btnFour3.grid(row=0, column=0, padx=15, pady=15)
+btnFour4.grid(row=1, column=0, padx=15, pady=15)
+btnFour5.grid(row=2, column=0, padx=15, pady=15)
+btnFour6.grid(row=3, column=0, padx=15, pady=15)
+btnFour7.grid(row=4, column=0, padx=15, pady=15)
+
+tab_parent.pack(expand=1, fill='both')
 
 window.mainloop()
