@@ -21,6 +21,7 @@ def prepare():
     
     driver = webdriver.Firefox()
     driver.get('https://tastaturschreiben.verlagskv.ch/#/login')
+    driver.implicitly_wait(10) # seconds
 
     username_tx = driver.find_element_by_id("username")
     password_tx = driver.find_element_by_id("password")
