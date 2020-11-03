@@ -332,38 +332,41 @@ def four7():
             time.sleep(.35 + (rnd.random() * 0.25))
         line.send_keys(Keys.ENTER)
 
-window = Tk()
+def drawWindow():
+    window = Tk()
 
-window.title("Übungen")
-window.geometry('650x500')
+    window.title("Übungen")
+    window.geometry('650x500')
 
-tab_parent = ttk.Notebook(window)
+    tab_parent = ttk.Notebook(window)
 
-tab1 = ttk.Frame(tab_parent)
-tab2 = ttk.Frame(tab_parent)
+    tab1 = ttk.Frame(tab_parent)
+    tab2 = ttk.Frame(tab_parent)
 
-tab_parent.add(tab1, text="4")
-tab_parent.add(tab2, text="5")
+    tab_parent.add(tab1, text="4")
+    tab_parent.add(tab2, text="5")
 
-# === WIDGETS FOR TAB ONE
-btnFour3 = tk.Button(tab1, text="4,3", command=four3)
-btnFour4 = tk.Button(tab1, text="4-4", command=four4)
-btnFour5 = tk.Button(tab1, text="4-5", command=four5)
-btnFour6 = tk.Button(tab1, text="4-6", command=four6)
-btnFour7 = tk.Button(tab1, text="4-7", command=four7)
+    # === WIDGETS FOR TAB ONE
+    btnFour3 = tk.Button(tab1, text="4-3", command=four3)
+    btnFour4 = tk.Button(tab1, text="4-4", command=four4)
+    btnFour5 = tk.Button(tab1, text="4-5", command=four5)
+    btnFour6 = tk.Button(tab1, text="4-6", command=four6)
+    btnFour7 = tk.Button(tab1, text="4-7", command=four7)
 
-imgLabelTabOne = tk.Label(tab1)
+    imgLabelTabOne = tk.Label(tab1)
 
-buttonForward = tk.Button(tab1, text="Forward")
-buttonBack = tk.Button(tab1, text="Back")
+    buttonForward = tk.Button(tab1, text="Forward")
+    buttonBack = tk.Button(tab1, text="Back")
 
-# === ADD WIDGETS TO GRID ON TAB ONE
-btnFour3.grid(row=0, column=0, padx=15, pady=15)
-btnFour4.grid(row=1, column=0, padx=15, pady=15)
-btnFour5.grid(row=2, column=0, padx=15, pady=15)
-btnFour6.grid(row=3, column=0, padx=15, pady=15)
-btnFour7.grid(row=4, column=0, padx=15, pady=15)
+    # === ADD WIDGETS TO GRID ON TAB ONE
+    btnFour3.grid(row=0, column=0, padx=15, pady=15)
+    btnFour4.grid(row=1, column=0, padx=15, pady=15)
+    btnFour5.grid(row=2, column=0, padx=15, pady=15)
+    btnFour6.grid(row=3, column=0, padx=15, pady=15)
+    btnFour7.grid(row=4, column=0, padx=15, pady=15)
 
-tab_parent.pack(expand=1, fill='both')
+    tab_parent.pack(expand=1, fill='both')
 
-window.mainloop()
+    window.mainloop()
+
+drawWindow()
