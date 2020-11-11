@@ -232,14 +232,14 @@ def four6():
 
     action = webdriver.common.action_chains.ActionChains(driver)
 
-    for n in range(4):
+    for n in range(2):
         repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
         driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
         action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
         action.click()
         action.perform()
 
-    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
     driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
     action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
     action.click()
@@ -332,6 +332,478 @@ def four7():
             time.sleep(.35 + (rnd.random() * 0.25))
         line.send_keys(Keys.ENTER)
 
+def five0():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-0')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(2):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-0/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five1():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-1')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-1/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five2():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-2')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-2/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five3():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-3')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(2):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-3/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five4():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-4')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-4/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five5():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-5')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-5/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five6():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-6')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(4):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-6/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
+def five7():
+
+    driver = prepare()
+    # wait = WebDriverWait(driver, 10)
+
+    driver.implicitly_wait(4) # seconds
+    driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-7')
+
+    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
+    
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
+    zeilenwiederholung_btn.click()
+
+    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
+
+    action = webdriver.common.action_chains.ActionChains(driver)
+
+    for n in range(2):
+        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
+        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
+        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
+        action.click()
+        action.perform()
+
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
+    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
+    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.click()
+    action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
+
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'finish-editor')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
+
+
+    while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-7/editor":
+        line = driver.find_element_by_xpath("//div[@id='line']/input")
+        editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
+        for editor_source_text in editor_source_texts:
+            spans = editor_source_text.find_elements_by_xpath("./span")
+            checked_for_pressed_key = False
+            for span in spans:
+                if "space" in span.get_attribute("class"):
+                    # line.send_keys(Keys.SPACE)
+                    line.send_keys(" ")
+                    checked_for_pressed_key = True
+
+            if not checked_for_pressed_key:
+                line.send_keys(editor_source_text.text)
+            time.sleep(.35 + (rnd.random() * 0.25))
+        line.send_keys(Keys.ENTER)
+
 def drawWindow():
     window = Tk()
 
@@ -353,6 +825,15 @@ def drawWindow():
     btnFour6 = tk.Button(tab1, text="4-6", command=four6)
     btnFour7 = tk.Button(tab1, text="4-7", command=four7)
 
+    # === WIDGETS FOR TAB TWO
+    btnFive1 = tk.Button(tab1, text="5-1", command=five1)
+    btnFive2 = tk.Button(tab1, text="5-2", command=five2)
+    btnFive3 = tk.Button(tab1, text="5-3", command=five3)
+    btnFive4 = tk.Button(tab1, text="5-4", command=five4)
+    btnFive5 = tk.Button(tab1, text="5-5", command=five5)
+    btnFive6 = tk.Button(tab1, text="5-6", command=five6)
+    btnFive7 = tk.Button(tab1, text="5-7", command=five7)
+
     imgLabelTabOne = tk.Label(tab1)
 
     buttonForward = tk.Button(tab1, text="Forward")
@@ -364,6 +845,15 @@ def drawWindow():
     btnFour5.grid(row=2, column=0, padx=15, pady=15)
     btnFour6.grid(row=3, column=0, padx=15, pady=15)
     btnFour7.grid(row=4, column=0, padx=15, pady=15)
+    
+    # === ADD WIDGETS TO GRID ON TAB ONE
+    btnFive1.grid(row=0, column=0, padx=15, pady=15)
+    btnFive2.grid(row=1, column=0, padx=15, pady=15)
+    btnFive3.grid(row=2, column=0, padx=15, pady=15)
+    btnFive4.grid(row=3, column=0, padx=15, pady=15)
+    btnFive5.grid(row=4, column=0, padx=15, pady=15)
+    btnFive6.grid(row=5, column=0, padx=15, pady=15)
+    btnFive7.grid(row=6, column=0, padx=15, pady=15)
 
     tab_parent.pack(expand=1, fill='both')
 
