@@ -49,7 +49,6 @@ def four3():
     print("NACH aufruf url\n")
     driver.implicitly_wait(10) # seconds
 
-    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'repeatExercise')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -516,10 +515,8 @@ def five3():
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-3')
-
-    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
     
-    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
+    zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'repeatExercise')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
 
@@ -527,18 +524,14 @@ def five3():
 
     action = webdriver.common.action_chains.ActionChains(driver)
 
-    for n in range(2):
-        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
-        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
-        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
-        action.click()
-        action.perform()
-
-    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='sliding-range-repeat-exercise']/input[1]")
     driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
-    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
+    action.move_to_element_with_offset(repeatLines_value_3, 35, 5)
     action.click()
     action.perform()
+
+    # Starte Übung
+    repeatLines_value_3.send_keys(Keys.SPACE)
 
     # Starte Übung
     repeatLines_value_3.send_keys(Keys.SPACE)
@@ -826,13 +819,14 @@ def drawWindow():
     btnFour7 = tk.Button(tab1, text="4-7", command=four7)
 
     # === WIDGETS FOR TAB TWO
-    btnFive1 = tk.Button(tab1, text="5-1", command=five1)
-    btnFive2 = tk.Button(tab1, text="5-2", command=five2)
-    btnFive3 = tk.Button(tab1, text="5-3", command=five3)
-    btnFive4 = tk.Button(tab1, text="5-4", command=five4)
-    btnFive5 = tk.Button(tab1, text="5-5", command=five5)
-    btnFive6 = tk.Button(tab1, text="5-6", command=five6)
-    btnFive7 = tk.Button(tab1, text="5-7", command=five7)
+    btnFive0 = tk.Button(tab2, text="5-0", command=five0)
+    btnFive1 = tk.Button(tab2, text="5-1", command=five1)
+    btnFive2 = tk.Button(tab2, text="5-2", command=five2)
+    btnFive3 = tk.Button(tab2, text="5-3", command=five3)
+    btnFive4 = tk.Button(tab2, text="5-4", command=five4)
+    btnFive5 = tk.Button(tab2, text="5-5", command=five5)
+    btnFive6 = tk.Button(tab2, text="5-6", command=five6)
+    btnFive7 = tk.Button(tab2, text="5-7", command=five7)
 
     imgLabelTabOne = tk.Label(tab1)
 
@@ -846,7 +840,7 @@ def drawWindow():
     btnFour6.grid(row=3, column=0, padx=15, pady=15)
     btnFour7.grid(row=4, column=0, padx=15, pady=15)
     
-    # === ADD WIDGETS TO GRID ON TAB ONE
+    # === ADD WIDGETS TO GRID ON TAB TWO
     btnFive1.grid(row=0, column=0, padx=15, pady=15)
     btnFive2.grid(row=1, column=0, padx=15, pady=15)
     btnFive3.grid(row=2, column=0, padx=15, pady=15)
