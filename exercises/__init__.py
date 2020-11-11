@@ -279,30 +279,13 @@ def four7():
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-7')
-
-    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
     
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
-    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
-    zeilenwiederholung_btn.click()
-
-    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
 
     action = webdriver.common.action_chains.ActionChains(driver)
 
-    for n in range(4):
-        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
-        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
-        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
-        action.click()
-        action.perform()
-
     repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
-    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
-    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
-    action.click()
-    action.perform()
-
+    
     # Starte Übung
     repeatLines_value_3.send_keys(Keys.SPACE)
 
@@ -746,29 +729,12 @@ def five7():
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-7')
 
-    # zeilenwiederholung_btn = driver.find_element_by_id("ts-sliding-toggle-3")
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
-    zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
-    zeilenwiederholung_btn.click()
-
-    # repeatLines_value_0 = driver.find_element_by_id("repeatLines_value_0")
 
     action = webdriver.common.action_chains.ActionChains(driver)
 
-    for n in range(2):
-        repeatLines_value_0 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_%s']/input[1]" % n)
-        driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_0)
-        action.move_to_element_with_offset(repeatLines_value_0, 80, 5)
-        action.click()
-        action.perform()
-
-    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_1']/input[1]")
-    driver.execute_script("arguments[0].setAttribute('value', '2')", repeatLines_value_3)
-    action.move_to_element_with_offset(repeatLines_value_3, 80, 5)
-    action.click()
-    action.perform()
-
+    repeatLines_value_3 = driver.find_element_by_xpath("//ts-sliding-range[@id='repeatLines_value_3']/input[1]")
+    
     # Starte Übung
     repeatLines_value_3.send_keys(Keys.SPACE)
 
@@ -807,9 +773,13 @@ def drawWindow():
 
     tab1 = ttk.Frame(tab_parent)
     tab2 = ttk.Frame(tab_parent)
+    tab3 = ttk.Frame(tab_parent)
+    tab4 = ttk.Frame(tab_parent)
 
     tab_parent.add(tab1, text="4")
     tab_parent.add(tab2, text="5")
+    tab_parent.add(tab3, text="6")
+    tab_parent.add(tab4, text="7")
 
     # === WIDGETS FOR TAB ONE
     btnFour3 = tk.Button(tab1, text="4-3", command=four3)
@@ -841,13 +811,36 @@ def drawWindow():
     btnFour7.grid(row=4, column=0, padx=15, pady=15)
     
     # === ADD WIDGETS TO GRID ON TAB TWO
-    btnFive1.grid(row=0, column=0, padx=15, pady=15)
-    btnFive2.grid(row=1, column=0, padx=15, pady=15)
-    btnFive3.grid(row=2, column=0, padx=15, pady=15)
-    btnFive4.grid(row=3, column=0, padx=15, pady=15)
-    btnFive5.grid(row=4, column=0, padx=15, pady=15)
-    btnFive6.grid(row=5, column=0, padx=15, pady=15)
-    btnFive7.grid(row=6, column=0, padx=15, pady=15)
+    btnFive0.grid(row=0, column=0, padx=15, pady=15)
+    btnFive1.grid(row=1, column=0, padx=15, pady=15)
+    btnFive2.grid(row=2, column=0, padx=15, pady=15)
+    btnFive3.grid(row=3, column=0, padx=15, pady=15)
+    btnFive4.grid(row=4, column=0, padx=15, pady=15)
+    btnFive5.grid(row=5, column=0, padx=15, pady=15)
+    btnFive6.grid(row=6, column=0, padx=15, pady=15)
+    btnFive7.grid(row=7, column=0, padx=15, pady=15)
+    
+    # # === ADD WIDGETS TO GRID ON TAB THREE
+    # btnSix0.grid(row=0, column=0, padx=15, pady=15)
+    # btnSix1.grid(row=1, column=0, padx=15, pady=15)
+    # btnSix2.grid(row=2, column=0, padx=15, pady=15)
+    # btnSix3.grid(row=3, column=0, padx=15, pady=15)
+    # btnSix4.grid(row=4, column=0, padx=15, pady=15)
+    # btnSix5.grid(row=5, column=0, padx=15, pady=15)
+    # btnSix6.grid(row=6, column=0, padx=15, pady=15)
+    # btnSix7.grid(row=7, column=0, padx=15, pady=15)
+    # btnSix8.grid(row=8, column=0, padx=15, pady=15)
+    
+    # # === ADD WIDGETS TO GRID ON TAB FOUR
+    # btnSeven0.grid(row=0, column=0, padx=15, pady=15)
+    # btnSeven1.grid(row=1, column=0, padx=15, pady=15)
+    # btnSeven2.grid(row=2, column=0, padx=15, pady=15)
+    # btnSeven3.grid(row=3, column=0, padx=15, pady=15)
+    # btnSeven4.grid(row=4, column=0, padx=15, pady=15)
+    # btnSeven5.grid(row=5, column=0, padx=15, pady=15)
+    # btnSeven6.grid(row=6, column=0, padx=15, pady=15)
+    # btnSeven7.grid(row=7, column=0, padx=15, pady=15)
+    # btnSeven8.grid(row=8, column=0, padx=15, pady=15)
 
     tab_parent.pack(expand=1, fill='both')
 
