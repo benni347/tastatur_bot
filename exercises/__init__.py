@@ -39,11 +39,17 @@ def prepare():
 
     return driver
 
+#def four3(ex):
 def four3():
     
     driver = prepare()
+    
+    # if ex == 3:
+    #   # alles für fou3
+    # elif ex == 4:
+    #   # alles von four4
+    #   # ..
  
-
     # driver.implicitly_wait(10) # seconds
     print("vor aufruf url\n")
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-3')
@@ -1663,86 +1669,63 @@ def drawWindow():
       title = title+1
 
     # === WIDGETS FOR TAB ONE
-    btnFour3 = tk.Button(tab_list[0], text="4-3", command=four3)
-    btnFour4 = tk.Button(tab_list[0], text="4-4", command=four4)
-    btnFour5 = tk.Button(tab_list[0], text="4-5", command=four5)
-    btnFour6 = tk.Button(tab_list[0], text="4-6", command=four6)
-    btnFour7 = tk.Button(tab_list[0], text="4-7", command=four7)
-
-    # === WIDGETS FOR TAB TWO
-    btnFive0 = tk.Button(tab_list[1], text="5-0", command=five0)
-    btnFive1 = tk.Button(tab_list[1], text="5-1", command=five1)
-    btnFive2 = tk.Button(tab_list[1], text="5-2", command=five2)
-    btnFive3 = tk.Button(tab_list[1], text="5-3", command=five3)
-    btnFive4 = tk.Button(tab_list[1], text="5-4", command=five4)
-    btnFive5 = tk.Button(tab_list[1], text="5-5", command=five5)
-    btnFive6 = tk.Button(tab_list[1], text="5-6", command=five6)
-    btnFive7 = tk.Button(tab_list[1], text="5-7", command=five7)
-
-    # === WIDGETS FOR TAB THREE
-    btnSix0 = tk.Button(tab_list[2], text="6-0", command=six0)
-    btnSix1 = tk.Button(tab_list[2], text="6-1", command=six1)
-    btnSix2 = tk.Button(tab_list[2], text="6-2", command=six2)
-    btnSix3 = tk.Button(tab_list[2], text="6-3", command=six3)
-    btnSix4 = tk.Button(tab_list[2], text="6-4", command=six4)
-    btnSix5 = tk.Button(tab_list[2], text="6-5", command=six5)
-    btnSix6 = tk.Button(tab_list[2], text="6-6", command=six6)
-    btnSix7 = tk.Button(tab_list[2], text="6-7", command=six7)
-
-    # === WIDGETS FOR TAB FOUR
-    btnSeven0 = tk.Button(tab_list[3], text="7-0", command=seven0)
-    btnSeven1 = tk.Button(tab_list[3], text="7-1", command=seven1)
-    btnSeven2 = tk.Button(tab_list[3], text="7-2", command=seven2)
-    btnSeven3 = tk.Button(tab_list[3], text="7-3", command=seven3)
-    btnSeven4 = tk.Button(tab_list[3], text="7-4", command=seven4)
-    btnSeven5 = tk.Button(tab_list[3], text="7-5", command=seven5)
-    btnSeven6 = tk.Button(tab_list[3], text="7-6", command=seven6)
-    btnSeven7 = tk.Button(tab_list[3], text="7-7", command=seven7)
-    btnSeven8 = tk.Button(tab_list[3], text="7-8", command=seven8)
+    btn_dict = {
+      4: [  # === WIDGETS FOR TAB ONE
+        tk.Button(tab_list[0], text="4-3", command=four3),
+        tk.Button(tab_list[0], text="4-4", command=four4),
+        tk.Button(tab_list[0], text="4-5", command=four5),
+        tk.Button(tab_list[0], text="4-6", command=four6),
+        tk.Button(tab_list[0], text="4-7", command=four7)
+      ],
+      5: [  # === WIDGETS FOR TAB TWO
+        tk.Button(tab_list[1], text="5-0", command=five0),
+        tk.Button(tab_list[1], text="5-1", command=five1),
+        tk.Button(tab_list[1], text="5-2", command=five2),
+        tk.Button(tab_list[1], text="5-3", command=five3),
+        tk.Button(tab_list[1], text="5-4", command=five4),
+        tk.Button(tab_list[1], text="5-5", command=five5),
+        tk.Button(tab_list[1], text="5-6", command=five6),
+        tk.Button(tab_list[1], text="5-7", command=five7)
+      ],
+      6: [  # === WIDGETS FOR TAB THREE
+        tk.Button(tab_list[2], text="6-0", command=six0),
+        tk.Button(tab_list[2], text="6-1", command=six1),
+        tk.Button(tab_list[2], text="6-2", command=six2),
+        tk.Button(tab_list[2], text="6-3", command=six3),
+        tk.Button(tab_list[2], text="6-4", command=six4),
+        tk.Button(tab_list[2], text="6-5", command=six5),
+        tk.Button(tab_list[2], text="6-6", command=six6),
+        tk.Button(tab_list[2], text="6-7", command=six7)
+      ],
+      7: [  # === WIDGETS FOR TAB FOUR
+        tk.Button(tab_list[3], text="7-0", command=seven0),
+        tk.Button(tab_list[3], text="7-1", command=seven1),
+        tk.Button(tab_list[3], text="7-2", command=seven2),
+        tk.Button(tab_list[3], text="7-3", command=seven3),
+        tk.Button(tab_list[3], text="7-4", command=seven4),
+        tk.Button(tab_list[3], text="7-5", command=seven5),
+        tk.Button(tab_list[3], text="7-6", command=seven6),
+        tk.Button(tab_list[3], text="7-7", command=seven7),
+        tk.Button(tab_list[3], text="7-8", command=seven8)
+      ]
+    }
 
     imgLabelTabOne = tk.Label(tab_list[0])
 
     buttonForward = tk.Button(tab_list[0], text="Forward")
     buttonBack = tk.Button(tab_list[0], text="Back")
 
-    # === ADD WIDGETS TO GRID ON TAB ONE
-    btnFour3.grid(row=0, column=0, padx=15, pady=15)
-    btnFour4.grid(row=1, column=0, padx=15, pady=15)
-    btnFour5.grid(row=2, column=0, padx=15, pady=15)
-    btnFour6.grid(row=3, column=0, padx=15, pady=15)
-    btnFour7.grid(row=4, column=0, padx=15, pady=15)
+    # === ADD WIDGETS TO GRID ON TABS
+    row = 0
+    col = -1
+    for exc in btn_dict:
+      for btn in btn_dict[exc]:
+        if (row%8) == 0:
+          col = col + 1
+        row = (row%8) + 1
+        btn.grid(row=row, column=col, padx=15, pady=15)
+      row=0
     
-    # === ADD WIDGETS TO GRID ON TAB TWO
-    btnFive0.grid(row=0, column=0, padx=15, pady=15)
-    btnFive1.grid(row=1, column=0, padx=15, pady=15)
-    btnFive2.grid(row=2, column=0, padx=15, pady=15)
-    btnFive3.grid(row=3, column=0, padx=15, pady=15)
-    btnFive4.grid(row=4, column=0, padx=15, pady=15)
-    btnFive5.grid(row=5, column=0, padx=15, pady=15)
-    btnFive6.grid(row=6, column=0, padx=15, pady=15)
-    btnFive7.grid(row=7, column=0, padx=15, pady=15)
-    
-    # === ADD WIDGETS TO GRID ON TAB THREE
-    btnSix0.grid(row=0, column=0, padx=15, pady=15)
-    btnSix1.grid(row=1, column=0, padx=15, pady=15)
-    btnSix2.grid(row=2, column=0, padx=15, pady=15)
-    btnSix3.grid(row=3, column=0, padx=15, pady=15)
-    btnSix4.grid(row=4, column=0, padx=15, pady=15)
-    btnSix5.grid(row=5, column=0, padx=15, pady=15)
-    btnSix6.grid(row=6, column=0, padx=15, pady=15)
-    btnSix7.grid(row=7, column=0, padx=15, pady=15)
-    
-    # === ADD WIDGETS TO GRID ON TAB FOUR
-    btnSeven0.grid(row=0, column=0, padx=15, pady=15)
-    btnSeven1.grid(row=1, column=0, padx=15, pady=15)
-    btnSeven2.grid(row=2, column=0, padx=15, pady=15)
-    btnSeven3.grid(row=3, column=0, padx=15, pady=15)
-    btnSeven4.grid(row=4, column=0, padx=15, pady=15)
-    btnSeven5.grid(row=5, column=0, padx=15, pady=15)
-    btnSeven6.grid(row=6, column=0, padx=15, pady=15)
-    btnSeven7.grid(row=7, column=0, padx=15, pady=15)
-    btnSeven8.grid(row=0, column=2, padx=15, pady=15)
-
     tab_parent.pack(expand=1, fill='both')
 
     window.mainloop()
