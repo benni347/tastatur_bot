@@ -1,23 +1,33 @@
+import time
+import random as rnd
+
+import json
+
+import webbrowser
+
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+
+import keyboard
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import time
-import random as rnd
 
-import tkinter as tk
-from tkinter import *
-from tkinter import ttk
-import webbrowser
+wait_period = 0
 
-import json
-
-cfg = json.load(open('tastatur_bot.json'))
-
-username = cfg['username']
-password = cfg['password']
+try:
+    cfg = json.load(open('login.json'))
+except FileNotFoundError:
+    username = ''
+    password = ''
+else:
+    username = cfg['username']
+    password = cfg['password']
 
 def prepare():
     
@@ -39,16 +49,9 @@ def prepare():
 
     return driver
 
-#def four3(ex):
 def four3():
     
     driver = prepare()
-    
-    # if ex == 3:
-    #   # alles für fou3
-    # elif ex == 4:
-    #   # alles von four4
-    #   # ..
  
     # driver.implicitly_wait(10) # seconds
     print("vor aufruf url\n")
@@ -100,17 +103,13 @@ def four3():
             time.sleep(.4)
         line.send_keys(Keys.ENTER)
 
-
 def four4():
 
     driver = prepare()
  
-
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-4')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -139,7 +138,6 @@ def four4():
         print("Page is ready!")
     except TimeoutException:
         print("Loading took too much time!")
-
 
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-4/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
@@ -155,20 +153,16 @@ def four4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def four5():
 
     driver = prepare()
  
-
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-5')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -198,7 +192,6 @@ def four5():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-5/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -213,9 +206,8 @@ def four5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def four6():
 
@@ -225,8 +217,6 @@ def four6():
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/4-6')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -271,9 +261,8 @@ def four6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def four7():
 
@@ -314,7 +303,7 @@ def four7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -372,7 +361,7 @@ def five0():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -430,20 +419,16 @@ def five1():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five2():
 
     driver = prepare()
  
-
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-2')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -473,7 +458,6 @@ def five2():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-2/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -488,9 +472,8 @@ def five2():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five3():
 
@@ -522,7 +505,6 @@ def five3():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-3/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -537,20 +519,16 @@ def five3():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five4():
 
     driver = prepare()
- 
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-4')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -579,7 +557,6 @@ def five4():
         print("Page is ready!")
     except TimeoutException:
         print("Loading took too much time!")
-
 
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-4/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
@@ -595,19 +572,15 @@ def five4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five5():
 
     driver = prepare()
- 
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-5')
-
-
     
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
@@ -638,7 +611,6 @@ def five5():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-5/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -653,19 +625,15 @@ def five5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five6():
 
     driver = prepare()
- 
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-6')
-
-
     
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
@@ -696,7 +664,6 @@ def five6():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-6/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -711,14 +678,12 @@ def five6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def five7():
 
     driver = prepare()
- 
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-7')
@@ -739,7 +704,6 @@ def five7():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/5-7/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -754,9 +718,8 @@ def five7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six0():
 
@@ -766,8 +729,6 @@ def six0():
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/6-0')
 
-
-    
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -797,7 +758,6 @@ def six0():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/6-0/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -812,20 +772,16 @@ def six0():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six1():
 
     driver = prepare()
- 
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/6-1')
-
-
-    
+  
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
     zeilenwiederholung_btn.click()
@@ -855,7 +811,6 @@ def six1():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/6-1/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -870,9 +825,8 @@ def six1():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six2():
 
@@ -881,8 +835,6 @@ def six2():
 
     driver.implicitly_wait(4) # seconds
     driver.get('https://tastaturschreiben.verlagskv.ch/#/exercises/e/6-2')
-
-
     
     zeilenwiederholung_label = driver.find_element_by_xpath("//label[contains(text(), 'Zeilenwiederholung aktivieren')]/..")
     zeilenwiederholung_btn = zeilenwiederholung_label.find_element_by_xpath("./ts-sliding-toggle/input[1]")
@@ -928,9 +880,8 @@ def six2():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six3():
 
@@ -976,9 +927,8 @@ def six3():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six4():
 
@@ -1032,9 +982,8 @@ def six4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
-
 
 def six5():
 
@@ -1090,7 +1039,7 @@ def six5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1148,7 +1097,7 @@ def six6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1191,7 +1140,7 @@ def six7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1246,7 +1195,7 @@ def seven0():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1304,7 +1253,7 @@ def seven1():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
     delay = 3 # seconds
 
@@ -1363,7 +1312,7 @@ def seven2():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1412,7 +1361,7 @@ def seven3():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1467,7 +1416,7 @@ def seven4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1523,7 +1472,7 @@ def seven5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 def seven6():
@@ -1580,7 +1529,7 @@ def seven6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
     
@@ -1624,7 +1573,7 @@ def seven7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
     
@@ -1668,7 +1617,7 @@ def seven8():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 def eight0():
@@ -1722,7 +1671,7 @@ def eight0():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1780,7 +1729,7 @@ def eight1():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
     delay = 3 # seconds
 
@@ -1839,7 +1788,7 @@ def eight2():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1888,7 +1837,7 @@ def eight3():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1943,7 +1892,7 @@ def eight4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -1999,7 +1948,7 @@ def eight5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 def eight6():
@@ -2056,7 +2005,7 @@ def eight6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
     
@@ -2100,7 +2049,7 @@ def eight7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
     
@@ -2144,7 +2093,7 @@ def eight8():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 def nine0():
@@ -2198,7 +2147,7 @@ def nine0():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -2256,7 +2205,7 @@ def nine1():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
     delay = 3 # seconds
 
@@ -2315,7 +2264,7 @@ def nine2():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -2364,7 +2313,7 @@ def nine3():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -2419,7 +2368,7 @@ def nine4():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 
@@ -2475,7 +2424,7 @@ def nine5():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
 def nine6():
@@ -2532,7 +2481,7 @@ def nine6():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
     
@@ -2576,13 +2525,10 @@ def nine7():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
 
-    
-
 def nine8():
-
     driver = prepare()
  
     time.sleep(3)
@@ -2605,7 +2551,6 @@ def nine8():
     except TimeoutException:
         print("Loading took too much time!")
 
-
     while driver.current_url == "https://tastaturschreiben.verlagskv.ch/#/exercises/e/9-8/editor":
         line = driver.find_element_by_xpath("//div[@id='line']/input")
         editor_source_texts=driver.find_elements_by_xpath("//div[@class='editor-source-text']/ts-line-display/ts-word-display")
@@ -2620,13 +2565,26 @@ def nine8():
 
             if not checked_for_pressed_key:
                 line.send_keys(editor_source_text.text)
-            time.sleep(.35 + (rnd.random() * 0.25))
+            time.sleep(.1 + (rnd.random() * wait_period))
         line.send_keys(Keys.ENTER)
+
+def writeToFile(logData, fileName, openOption="w"):
+    file = open(fileName, openOption)
+    file.write(json.dumps(json.loads(logData), indent=4)) 
+    file.write("\n")
+    file.close()  
+
+def storeLoginData(val1, val2):
+    writeToFile('{"username":"' + val1 + '", "password":"' + val2 + '"}', "login.json")
+
+def recordWaitPeriod(waitPeriod):
+    global wait_period
+    wait_period = float(waitPeriod)
 
 def drawWindow():
     window = Tk()
 
-    window.title("Übungen")
+    window.title("Exercises")
     window.geometry('950x500')
 
     tab_parent = ttk.Notebook(window)
@@ -2637,9 +2595,13 @@ def drawWindow():
       ttk.Frame(tab_parent),
       ttk.Frame(tab_parent),
       ttk.Frame(tab_parent),
+      ttk.Frame(tab_parent),
       ttk.Frame(tab_parent)
     ]
-    
+
+    tab_list_settings = [
+      ttk.Frame(tab_parent)
+    ]
     new = 1
     url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
@@ -2650,8 +2612,19 @@ def drawWindow():
     for tab in tab_list:
       tab_parent.add(tab, text="{0}".format(title))
       BtnHelp = tk.Button(tab, text = "Help", command=openweb)
-      BtnHelp.grid(row=6, column=6, padx=15, pady=15)
+      BtnHelp.grid(row=5, column=8, padx=15, pady=15)
       title = title+1
+      
+    titleSettings = "Settings"
+    for tab in tab_list_settings:
+      tab_parent.add(tab, text="Settings")
+      
+    mail = tk.Label(tab_list_settings[0], text="E-Mail")
+    password = tk.Label(tab_list_settings[0], text="Password")
+    entry_1 = tk.Entry(tab_list_settings[0])
+    entry_2 = tk.Entry(tab_list_settings[0])
+    submit = tk.Button(tab_list_settings[0], text="Enter", command=lambda: storeLoginData(entry_1.get(), entry_2.get()))
+    time_scale = tk.Scale(tab_list_settings[0], from_=0.1, to=1.0, resolution=0.01, length=600, orient=HORIZONTAL, command=recordWaitPeriod)
 
     # === WIDGETS FOR TAB ONE
     btn_dict = {
@@ -2714,13 +2687,16 @@ def drawWindow():
         tk.Button(tab_list[5], text="9-6", command=nine6),
         tk.Button(tab_list[5], text="9-7", command=nine7),
         tk.Button(tab_list[5], text="9-8", command=nine8)
+      ],
+      titleSettings: [  # === WIDGETS FOR SETTINGS
+        mail,
+        password,
+        entry_1,
+        entry_2,
+        submit,
+        time_scale
       ]
     }
-
-    imgLabelTabOne = tk.Label(tab_list[0])
-
-    buttonForward = tk.Button(tab_list[0], text="Forward")
-    buttonBack = tk.Button(tab_list[0], text="Back")
 
     # === ADD WIDGETS TO GRID ON TABS
     row = 0
@@ -2732,7 +2708,13 @@ def drawWindow():
         row = (row%8) + 1
         btn.grid(row=row, column=col, padx=15, pady=15)
       row=0
-    
+    mail.grid(row=0, column=0)
+    password.grid(row=1, column=0)
+    entry_1.grid(row=0, column=1)
+    entry_2.grid(row=1, column=1)
+    submit.grid(row=1)
+    time_scale.grid(row=3, column=0)
+
     tab_parent.pack(expand=1, fill='both')
 
     window.mainloop()
