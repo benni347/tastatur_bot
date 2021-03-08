@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.8
 
-import exercises
-#from tbWindow import *
+#import exercises
+import base
+import gui
 
-exercises.drawWindow()
+base.loadSettings()
+gui.drawWindow()
