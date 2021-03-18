@@ -20,7 +20,14 @@ exercises_range = {
   7: (0, 8),
   8: (0, 8),
   9: (0, 8),
-  10: (0, 8)
+  10: (0, 8),
+  11: (0, 7),
+  12: (0, 8),
+  13: (0, 8),
+  14: (0, 8),
+  15: (1, 4),
+  16: (1, 3),
+  17: (1, 2)
 }
 
 def recordWaitPeriod(waitPeriod):
@@ -47,7 +54,7 @@ def drawWindow():
   # "Exercises" tabs
   tab_list = [] # List with all the tabs for the exercises
   # Create tabs
-  for tn in range(7):
+  for tn in range(14):
     # Empty tabs
     tab_list.append(ttk.Frame(tab_parent))
 
@@ -56,13 +63,13 @@ def drawWindow():
   ]
 
   # Add "Help" button on all tabs
-  new = 1
-  url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" # <- What might that be?
+  # new = 1
+  # url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" # <- What might that be?
   title = 4
   for tab in tab_list:
     tab_parent.add(tab, text="%s" % title)
-    BtnHelp = tk.Button(tab, text="Help", command=lambda: openweb(url))
-    BtnHelp.grid(row=5, column=8, padx=15, pady=15)
+    # BtnHelp = tk.Button(tab, text="Help", command=lambda: openweb(url))
+    # BtnHelp.grid(row=5, column=8, padx=15, pady=15)
     title = title+1
     
   # "Settings" tab
