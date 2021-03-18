@@ -3,7 +3,7 @@ import time
 import random as rnd
 import json
 import webbrowser
-#import keyboard    # was ist das?
+#import keyboard
 from functools import partial
 import base
 
@@ -19,7 +19,8 @@ exercises_range = {
   6: (0, 7),
   7: (0, 8),
   8: (0, 8),
-  9: (0, 8)
+  9: (0, 8),
+  10: (0, 8)
 }
 
 def recordWaitPeriod(waitPeriod):
@@ -32,12 +33,8 @@ def openweb(url, new=1):
 def exercise(le, uebung):
   '''Helper function run by Tk.button, which executes the proper function.'''
   # "le" = "Lerneinheit"
-  if le == 4:
-    import four
-    four.run(uebung)
-  elif le == 5:
-    import five
-    five.run(uebung)
+  import exercises.exercise
+  exercises.exercise.run(le, uebung)
 
 def drawWindow():
   window = tk.Tk()

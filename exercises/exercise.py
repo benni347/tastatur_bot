@@ -11,8 +11,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-def fourN(uebung):
-  url = "%s%s-%s" % (base.exercises_base_url, 4, uebung)
+def exerciseN(le, uebung):
+  url = "%s%s-%s" % (base.exercises_base_url, le, uebung)
 
   driver = base.login(url = url)
   wait = WebDriverWait(driver, 3)
@@ -75,5 +75,5 @@ def fourN(uebung):
         base.time.sleep(.1 + (base.rnd.random() * base.wait_period))
     line.send_keys(Keys.ENTER)
 
-def run(uebung):
-  fourN(uebung)
+def run(le, uebung):
+  exerciseN(le, uebung)
