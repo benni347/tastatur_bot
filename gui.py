@@ -62,14 +62,9 @@ def drawWindow():
     ttk.Frame(tab_parent)
   ]
 
-  # Add "Help" button on all tabs
-  # new = 1
-  # url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" # <- What might that be?
   title = 4
   for tab in tab_list:
     tab_parent.add(tab, text="%s" % title)
-    # BtnHelp = tk.Button(tab, text="Help", command=lambda: openweb(url))
-    # BtnHelp.grid(row=5, column=8, padx=15, pady=15)
     title = title+1
     
   # "Settings" tab
@@ -89,9 +84,9 @@ def drawWindow():
       username_tx.get(), password_tx.get(), time_scale.get())
   )
 
-  username_tx.insert(0, base.username)
-  password_tx.insert(0, base.password)
-  time_scale.set(base.wait_period)
+  username_tx.insert(0, base.USERNAME)
+  password_tx.insert(0, base.PASSWORD)
+  time_scale.set(base.WAIT_PERIOD)
 
   # === WIDGETS FOR TABS
   # "exercises": Dict containing for every "Lerneinheit":

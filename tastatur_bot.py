@@ -1,8 +1,6 @@
-#!/usr/bin/env python3.8
-
-#import exercises
+# import exercises
 import base
 import gui
 
-base.loadSettings()
+base.load_settings()
 gui.drawWindow()

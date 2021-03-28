@@ -4,7 +4,7 @@ import base
 
 # Selenium imports
 from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
+# from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,7 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
 def exerciseN(le, uebung):
-  url = "%s%s-%s" % (base.exercises_base_url, le, uebung)
+
+  url = "%s%s-%s" % (base.EXERCISE_BASE_URL, le, uebung)
 
   driver = base.login(url = url)
   wait = WebDriverWait(driver, 3)
@@ -72,7 +73,7 @@ def exerciseN(le, uebung):
 
         if not checked_for_pressed_key:
             line.send_keys(editor_source_text.text)
-        base.time.sleep(.1 + (base.rnd.random() * base.wait_period))
+        base.time.sleep(.1 + (base.rnd.random() * base.WAIT_PERIOD))
     line.send_keys(Keys.ENTER)
 
 def run(le, uebung):
