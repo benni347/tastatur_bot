@@ -1,3 +1,5 @@
+'''Creating the GUI'''
+
 # Misc imports
 import time
 import random as rnd
@@ -30,9 +32,10 @@ exercises_range = {
   17: (1, 2)
 }
 
-def recordWaitPeriod(waitPeriod):
+def record_wait_period(wait_period):
+  '''store the wait_period in the global variable'''
   global wait_period
-  wait_period = float(waitPeriod)
+  wait_period = float(wait_period)
 
 def openweb(url, new=1):
   webbrowser.open(url, new=new)
@@ -50,7 +53,7 @@ def drawWindow():
   window.geometry('950x500')
 
   tab_parent = ttk.Notebook(window)
-  
+
   # "Exercises" tabs
   tab_list = [] # List with all the tabs for the exercises
   # Create tabs
@@ -66,21 +69,21 @@ def drawWindow():
   for tab in tab_list:
     tab_parent.add(tab, text="%s" % title)
     title = title+1
-    
+
   # "Settings" tab
   titleSettings = "Settings"
   for tab in tab_list_settings:
     tab_parent.add(tab, text="Settings")
-    
+
   mail = tk.Label(tab_list_settings[0], text="E-Mail")
   password = tk.Label(tab_list_settings[0], text="Password")
   username_tx = tk.Entry(tab_list_settings[0])
   password_tx = tk.Entry(tab_list_settings[0], show="#")
   time_scale = tk.Scale(tab_list_settings[0], from_=0.1, to=1.0,
-    resolution=0.01, length=600, orient=tk.HORIZONTAL, command=recordWaitPeriod
+    resolution=0.01, length=600, orient=tk.HORIZONTAL, command=record_wait_period
   )
   submit = tk.Button(tab_list_settings[0], text="Speichern",
-    command=lambda: base.storeSettings(
+    command=lambda: base.store_settings(
       username_tx.get(), password_tx.get(), time_scale.get())
   )
 
@@ -90,7 +93,7 @@ def drawWindow():
 
   # === WIDGETS FOR TABS
   # "exercises": Dict containing for every "Lerneinheit":
-  # - "exercises": Dict with partial() function for every "Übung" 
+  # - "exercises": Dict with partial() function for every "Übung"
   # - "buttons": List with buttons for every "Übung"
   exercises = {}
   btn_list = []
@@ -119,7 +122,7 @@ def drawWindow():
       row = (row%8) + 1
       btn.grid(row=row, column=col, padx=15, pady=15)
     row=0
-    
+
   # Widgets on Settings tab
   mail.grid(row=0, column=0)
   password.grid(row=1, column=0)
