@@ -32,10 +32,10 @@ exercises_range = {
   17: (1, 2)
 }
 
-def record_wait_period(wait_period):
+def record_wait_period(period_to_wait):
   '''store the wait_period in the global variable'''
   global wait_period
-  wait_period = float(wait_period)
+  wait_period = float(period_to_wait)
 
 def openweb(url, new=1):
   webbrowser.open(url, new=new)
