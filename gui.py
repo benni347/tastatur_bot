@@ -11,7 +11,7 @@ import base
 
 # Tk import
 import tkinter as tk
-from tkinter import ttk
+from tkinter import StringVar, ttk
 from tkinter import messagebox
 
 # Dict with min. & max. number of exercises in each "Lerneinheit" (LE)
@@ -42,11 +42,19 @@ def openweb(url, new=1):
 
 def exercise(le, uebung):
   '''Helper function run by Tk.button, which executes the proper function.'''
+  global all_exercises
+
   # "le" = "Lerneinheit"
   import exercises.exercise
-  exercises.exercise.run(le, uebung)
+
+  akt_uebung = uebung
+  while akt_uebung <= exercises_range[le][1]:
+    exercises.exercise.run(le, akt_uebung)
+    akt_uebung += 1
 
 def drawWindow():
+  global all_exercises
+
   window = tk.Tk()
 
   window.title("Exercises")
@@ -71,17 +79,26 @@ def drawWindow():
     title = title+1
 
   # "Settings" tab
-  titleSettings = "Settings"
+  title_settings = "Settings"
   for tab in tab_list_settings:
-    tab_parent.add(tab, text="Settings")
+    tab_parent.add(tab, text=title_settings)
 
   mail = tk.Label(tab_list_settings[0], text="E-Mail")
   password = tk.Label(tab_list_settings[0], text="Password")
   username_tx = tk.Entry(tab_list_settings[0])
   password_tx = tk.Entry(tab_list_settings[0], show="#")
+  time_scale_label = tk.Label(tab_list_settings[0], text="Time Scale")
   time_scale = tk.Scale(tab_list_settings[0], from_=0.1, to=1.0,
-    resolution=0.01, length=600, orient=tk.HORIZONTAL, command=record_wait_period
+    resolution=0.01, length=350, orient=tk.HORIZONTAL, command=record_wait_period
   )
+
+  all_exer = tk.IntVar(0)
+  run_all_exercises = tk.Checkbutton(tab_list_settings[0],
+    text = "Alle Übungen der Lerneinheit?", variable=all_exer)
+
+  # v = StringVar(tab_list_settings[0], "1")
+  # run_all_exercises_yes = tk.Radiobutton(tab_list_settings[0], "ja", variable=v, value="1")
+  # run_all_exercises_no = tk.Radiobutton(tab_list_settings[0], "nein", variable=v, value="0")
   submit = tk.Button(tab_list_settings[0], text="Speichern",
     command=lambda: base.store_settings(
       username_tx.get(), password_tx.get(), time_scale.get())
@@ -128,8 +145,10 @@ def drawWindow():
   password.grid(row=1, column=0)
   username_tx.grid(row=0, column=1)
   password_tx.grid(row=1, column=1)
-  time_scale.grid(row=3, column=0)
-  submit.grid(row=4, column=0)
+  time_scale_label.grid(row=3, column=0)
+  time_scale.grid(row=3, column=1)
+  # run_all_exercises.grid(row=4, column=0)
+  submit.grid(row=5, column=0)
 
   tab_parent.pack(expand=1, fill='both')
 

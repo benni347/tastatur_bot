@@ -14,16 +14,18 @@ EXERCISE_BASE_URL = "https://tastaturschreiben.verlagskv.ch/#/exercises/e/"
 USERNAME = 'n/a'
 PASSWORD = 'n/a'
 WAIT_PERIOD = -1
+DO_ALL_EXERCISES = -1
 
 def write_to_file(log_data, file_name, open_option="w"):
     file = open(file_name, open_option)
+    print(json.dumps(json.loads(log_data), indent=7))
     file.write(json.dumps(json.loads(log_data), indent=7))
     file.write("\n")
     file.close()
 
 def load_settings():
     '''Load settings from settings.json file'''
-    global USERNAME, PASSWORD, WAIT_PERIOD
+    global USERNAME, PASSWORD, WAIT_PERIOD, DO_ALL_EXERCISES
 
     try:
         cfg = json.load(open('settings.json'))
@@ -32,14 +34,19 @@ def load_settings():
         USERNAME = ''
         PASSWORD = ''
         WAIT_PERIOD = 0
+        #DO_ALL_EXERCISES = 0
 
     else:
         USERNAME = cfg['username']
         PASSWORD = cfg['password']
         WAIT_PERIOD = cfg['wait_period']
+        #DO_ALL_EXERCISES = cfg['do_all_exercises']
 
+#def store_settings(username, password, wait_period, do_all_exercises):
 def store_settings(username, password, wait_period):
     '''Store settings in settings.json file'''
+    # write_to_file('{"username":"%s", "password":"%s", "wait_period":%s, "do_all_exercises":%s}' % (
+    # username, password, wait_period, do_all_exercises
     write_to_file('{"username":"%s", "password":"%s", "wait_period":%s}' % (
     username, password, wait_period
   ), "settings.json")
