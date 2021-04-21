@@ -1,5 +1,5 @@
 *.ini
-settings.json
+settings.json*
 *.log
 **/__pycache__/*
 geckodriver*
