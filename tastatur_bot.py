@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 # import exercises
-import base
-import gui
+import ./src/base as base
+import ./src/gui as gui
 
 base.load_settings()
 gui.drawWindow()

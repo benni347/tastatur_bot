@@ -1,6 +1,6 @@
 from tkinter import messagebox
 
-import base
+import ../src/base
 
 # Selenium imports
 from selenium import webdriver
